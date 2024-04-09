@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenCV.js Example</title>
+</head>
+<body>
+    <video id="videoElement" autoplay></video>
+    <canvas id="canvasOutput" width="640" height="480"></canvas>
+    <img id="inputImage" src="/portrait.jpg" width="320" height="240" />
+    <script src="https://docs.opencv.org/4.5.4/opencv.js"></script>
+    <script src="node_modules/@mediapipe/tasks-vision"></script>
+    <!-- Importar MediaPipe desde CDN -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision"></script> -->
+    <script>
+        // Función que se ejecutará después de que OpenCV.js se haya cargado completamente
+        // cv.onRuntimeInitialized = function() {
+        //     // Aquí puedes usar las funciones de OpenCV.js
+        //     // Por ejemplo, cargar y mostrar las dimensiones de una imagen
+        //     let inputImage = document.getElementById('inputImage');
+        //     let src = cv.imread(inputImage);
+            
+        //     console.log('Ancho:', src.cols);
+        //     console.log('Alto:', src.rows);
+            
+        //     src.delete(); // Liberar memoria
+        // };
+        // Llamar a la función para solicitar el acceso a la cámara
+        </script>
+        <!-- <script>
+            // Esperar a que OpenCV.js se haya cargado completamente
+            cv.onRuntimeInitialized = function() {
+                // Crear una instancia de FaceMesh
+                const faceMesh = new MediaPipe.FaceMesh({
+                    staticImageMode: true,
+                    maxNumFaces: 1,
+                    minDetectionConfidence: 0.5,
+                });
+    
+                // Continuar con el resto del código aquí...
+            }
+        </script> -->
+       <!-- <script>
+        // Esperar a que OpenCV.js se haya cargado completamente
+        cv.onRuntimeInitialized = function() {
+            // Importar las bibliotecas necesarias
+            const mediapipe = window["@mediapipe/tasks-vision"];
+
+            // Verificar si Mediapipe y FaceMesh están definidos correctamente
+            if (mediapipe && mediapipe.FaceMesh) {
+                // Crear una instancia de FaceMesh
+                const faceMesh = new mediapipe.FaceMesh({
+                    staticImageMode: true,
+                    maxNumFaces: 1,
+                    minDetectionConfidence: 0.5,
+                });
+
+                // Obtener una referencia al elemento de imagen
+                const imgElement = document.getElementById('inputImage');
+
+                // Cargar la imagen
+                const image = cv.imread(imgElement);
+
+                // Convertir la imagen a RGB
+                const imageRgb = new cv.Mat();
+                cv.cvtColor(image, imageRgb, cv.COLOR_RGBA2RGB);
+
+                // Procesar la imagen con FaceMesh
+                const results = faceMesh.process(imageRgb);
+
+                // Dibujar los landmarks en la imagen
+                if (results.multiFaceLandmarks) {
+                    for (const faceLandmarks of results.multiFaceLandmarks) {
+                        // Aquí puedes realizar operaciones similares a las del código Python
+                        // Por ejemplo, dibujar los landmarks en la imagen
+                        // ...
+                    }
+                }
+
+                // Liberar la memoria de las matrices
+                image.delete();
+                imageRgb.delete();
+
+                // Mostrar la imagen (puedes adaptar esto según tu entorno)
+                cv.imshow('Image', image);
+                cv.waitKey(5000); // Esperar 5 segundos
+                cv.destroyAllWindows();
+
+                // Devolver los resultados (puedes adaptar esto según tus necesidades)
+                return results;
+            } else {
+                console.error("No se pudo encontrar la función FaceMesh en MediaPipe");
+            }
+        }
+    </script> -->
+        <!-- <script src="abrirCamara.js"></script> -->
+</body>
+</html>
